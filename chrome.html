@@ -1,0 +1,613 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Don't Learn Technology | Fun DIY Electronics</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1e3a8a;
+      --accent: #fbbf24;
+      --dark: #111827;
+      --light: #f9fafb;
+      --gray: #6b7280;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    /* Header with animated gradient */
+    header {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, #1e40af 100%);
+      text-align: center;
+      padding: 3rem 1rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(251,191,36,0.1) 0%, transparent 70%);
+      animation: pulse 15s infinite linear;
+    }
+    
+    .logo-container {
+      position: relative;
+      z-index: 2;
+    }
+    
+    header img.logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.5s ease;
+    }
+    
+    header img.logo:hover {
+      transform: rotate(15deg) scale(1.05);
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .type-text {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: bold;
+      font-family: 'Roboto Mono', monospace;
+      height: 2rem;
+      margin: 1rem 0;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Animated banner */
+    .banner-wrapper {
+      position: relative;
+      margin: -2rem auto 0;
+      max-width: 1200px;
+      padding: 0 1rem;
+      z-index: 3;
+    }
+    
+    .banner-img {
+      width: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transform: perspective(1000px) rotateX(5deg);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+    
+    .banner-img:hover {
+      transform: perspective(1000px) rotateX(0deg);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+    
+    /* Main content sections */
+    section {
+      padding: 4rem 1rem;
+      position: relative;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      position: relative;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      margin: 0.5rem auto;
+      border-radius: 2px;
+    }
+    
+    /* Hero section */
+    .hero-text {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+    }
+    
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--accent);
+      color: var(--dark);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+    }
+    
+    .btn i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+    
+    .btn-youtube {
+      background-color: #ff0000;
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+    }
+    
+    .btn-instagram {
+      background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+      color: white;
+      box-shadow: 0 4px 15px rgba(193, 53, 132, 0.3);
+    }
+    
+    /* Video gallery */
+    .video-gallery {
+      background: linear-gradient(to bottom, var(--primary-dark), #1e40af);
+      padding: 4rem 1rem;
+    }
+    
+    .video-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .video-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      aspect-ratio: 9/16;
+    }
+    
+    .video-card:hover {
+      transform: scale(1.03);
+    }
+    
+    .video-card iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* About Us Section */
+    .about-us {
+      background: linear-gradient(to right, rgba(30, 58, 138, 0.9), rgba(30, 64, 175, 0.9));
+      color: white;
+      text-align: center;
+    }
+    
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+    
+    .about-content p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+      position: relative;
+    }
+    
+    .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    
+    .highlight:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    
+    /* Projects Grid */
+    .projects {
+      background-color: var(--dark);
+    }
+    
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .project-card {
+      background-color: #1f2937;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      border-color: var(--primary);
+    }
+    
+    .project-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .project-card h3 {
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .project-card p {
+      color: rgba(255,255,255,0.8);
+    }
+    
+    .project-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .whatsapp-float img {
+      width: 60px;
+      height: 60px;
+      transition: transform 0.3s ease;
+    }
+    
+    .whatsapp-float:hover img {
+      transform: scale(1.1);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--primary-dark);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 1rem;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--accent));
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    
+    .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      transform: translateY(-5px);
+      color: var(--accent);
+    }
+    
+    .copyright {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .type-text {
+        font-size: 1.2rem;
+      }
+      
+      .tagline {
+        font-size: 1rem;
+      }
+      
+      section {
+        padding: 3rem 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.8rem;
+      }
+      
+      .video-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <img src="image/logo.jpeg" alt="Don't Learn Technology Logo" class="logo" />
+      <h1>Don't Learn Technology</h1>
+      <div class="type-text" id="typed-text"></div>
+      <p class="tagline">DIY Tech Projects | Arduino | ESP32 | IoT Made Simple</p>
+    </div>
+    <section>
+        
+    </section>
+    <!-- Responsive Banner Image -->
+    <div class="banner-wrapper">
+      <img src="image/iotbanner.jpeg" alt="Smart Home IoT Banner" class="banner-img" />
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <p>Welcome to the fun side of tech! Follow hands-on tutorials, gadgets, and maker hacks — minus the boring stuff.</p>
+      <div class="buttons">
+        <a href="https://youtube.com/@dontlearntechnology" target="_blank" class="btn btn-youtube">
+          <i class="fab fa-youtube"></i> YouTube Channel
+        </a>
+        <a href="https://www.instagram.com/dont_learn_technology" target="_blank" class="btn btn-instagram">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Gallery -->
+  <section class="video-gallery">
+    <h2 class="section-title">Our Latest Shorts</h2>
+    
+    <div class="video-container">
+      <!-- Video 1 -->
+      <div class="video-card">
+        <iframe 
+          src="https://www.youtube.com/embed/PyLfzG3ZGjo" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+  
+      <!-- Video 2 -->
+      <div class="video-card">
+        <iframe 
+          src="https://www.youtube.com/embed/EJcRRSZMOIo" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+  
+      <!-- Video 3 -->
+      <div class="video-card">
+        <iframe 
+          src="https://www.youtube.com/embed/kW-j3ZopDYI" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section class="about-us" id="about">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+      <p>
+        <strong class="highlight">Don't Learn Technology</strong> is a creative initiative where technology meets simplicity.
+        We specialize in <span class="highlight">IoT solutions</span>, <span class="highlight">Home Automation</span>, and <span class="highlight">Electronic Repair</span> tutorials that empower curious minds to build and innovate.
+      </p>
+      <p>
+        Our mission is to turn complex electronics into fun, hands-on learning — making tech accessible to everyone.
+      </p>
+      <p>
+        Join us on YouTube and Instagram as we break barriers in DIY electronics!
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="projects">
+    <h2 class="section-title">Featured Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-icon">
+          <i class="fas fa-microchip"></i>
+        </div>
+        <h3>ESP32 with Blynk</h3>
+        <p>Control your home lights wirelessly with ESP32 + Blynk app setup.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">
+          <i class="fas fa-thermometer-half"></i>
+        </div>
+        <h3>DIY Temperature Monitor</h3>
+        <p>Build a simple OLED display monitor using sensors and code.</p>
+      </div>
+      <div class="project-card">
+        <div class="project-icon">
+          <i class="fas fa-tools"></i>
+        </div>
+        <h3>Electronics Repair</h3>
+        <p>Step-by-step video teardown and fix of a drive board.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Floating Icon -->
+  <div class="whatsapp-float">
+    <a href="https://wa.me/919597781488" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat on WhatsApp">
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://youtube.com/@dontlearntechnology" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/dont_learn_technology" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/919597781488" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p class="copyright">© 2025 Don't Learn Technology | Made with <i class="fas fa-heart" style="color: #ff0000;"></i> for curious minds.</p>
+  </footer>
+
+  <!-- Auto Typing Script -->
+  <script>
+    const textArray = ["ESP32 Projects", "DIY Home Automation", "IoT with Arduino", "Electronics Repair"];
+    let count = 0, index = 0, currentText = "", letter = "";
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+      if (count === textArray.length) count = 0;
+      currentText = textArray[count];
+      
+      if (isDeleting) {
+        letter = currentText.slice(0, --index);
+        typingSpeed = 50;
+      } else {
+        letter = currentText.slice(0, ++index);
+        typingSpeed = 100;
+      }
+
+      document.getElementById("typed-text").textContent = letter;
+
+      if (!isDeleting && letter.length === currentText.length) {
+        typingSpeed = 1500;
+        isDeleting = true;
+      } else if (isDeleting && letter.length === 0) {
+        isDeleting = false;
+        count++;
+        typingSpeed = 500;
+      }
+
+      setTimeout(type, typingSpeed);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setTimeout(type, 1000);
+    });
+  </script>
+
+</body>
+</html>
